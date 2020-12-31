@@ -27,7 +27,7 @@ hoursFunction = () => {
      var row = $(`<div data-time=${hours} id='${hours}' class="row">`);
     
      // create a column
-     var col1 = $('<div class="col-sm-2"> <p class="hour">' + hours + '</p>');
+     var col1 = $('<div class="col-sm-2"> <p class="hour">' + hours[hours.length - 1] + '</p>');
 
      //create column 2
      var col2 = $(`<div class="col-sm-8 past"><textarea id=text${hours} class="description" placeholder="Add event..."></textarea>`);        
