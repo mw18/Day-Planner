@@ -3,13 +3,13 @@ $( document ).ready(function() {
    $("#currentDay").text(moment().format("dddd, MMMM Do"));
 });
 
-// calculation for hours in a day - trying to find a way to break down each hour and input it on the page 
+// calculation for hours in a day 
 const startTime = '09:00:00';
 const durationInHours = '8';
 
 const endTime = moment(startTime, 'HH:mm:ss').add(durationInHours, 'hours').format("h:mm:ss a");
 // test console.log(endTime); //  returns 5:00:00 pm 
-// test console.log(endTime.length); // returns 10 ?
+// test console.log(endTime.length); // returns 9
 
 // create hours array 
 hoursFunction = () => {
@@ -19,29 +19,33 @@ hoursFunction = () => {
         hours.push(hourList.format('h:mm A'))
         hourList = hourList.add(60, 'minutes');
 
-        // $("#currentDay").text(moment().format("dddd, MMMM Do"));
-        // for (i = 9, len = hours.length, text = ""; i < len; i++) {
-        //     text += hours[i] + "<br>";
-        // } 
-
+     // create table row 
      var row = $(`<div data-time=${hours} id='${hours}' class="row">`);
     
-     // create a column
-     var col1 = $('<div class="col-sm-2"> <p class="hour">' + hours[hours.length - 1] + '</p>');
+        // create a column
+        var col1 = $('<div class="col-sm-2"> <p class="hour">' + hours[hours.length - 1] + '</p>');
 
-     //create column 2
-     var col2 = $(`<div class="col-sm-8 past"><textarea id=text${hours} class="description" placeholder="Add event..."></textarea>`);        
-    
-     //create column 3
-     var col3 = $(`<div class="col-sm-2"><button class="saveBtn" id=${hours}> <i class="fas fa-save"></i> </button>`)
+        //create column 2
+        var col2 = $(`<div class="col-sm-8 past" id="event"><textarea id=event id=text${hours} class="description" placeholder="Add event..."></textarea>`);        
 
-    // append col to row
+        //create column 3
+        var col3 = $(`<div class="col-sm-2"><button class="save-button" id=save id=${hours}> <i class="fas fa-save"></i> </button>`)
+
+        // append col to row
         row.append(col1);
         row.append(col2);
         row.append(col3);
 
-    // last step add rows to container
+        // append rows to container
         $(".container").append(row);
+        
+
+        // question how to store the <teaxtarea> value to local storagedocument.getElementById("save").addEventListener("click", function () 
+        //{   
+            //window.localStorage.setItem("event", textarea.innerHTML);
+    
+        //} , false);
+
 
     })
     return hours
